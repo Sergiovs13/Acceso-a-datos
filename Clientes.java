@@ -57,4 +57,14 @@ public class Clientes implements Serializable{
 	public String getEstado() {
 		return estadoCuenta;
 	}
+	
+	public String[] getArrayDatos() {
+		String[] datos=new String[5];
+		datos[0]=this.DNI;
+		datos[1]=this.nombre;
+		datos[2]=this.direccion;
+		datos[3]=this.saldo+"";
+		datos[4]=this.estadoCuenta;
+		return datos;
+	}
 }
