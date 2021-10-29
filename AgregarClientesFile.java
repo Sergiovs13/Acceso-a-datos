@@ -102,6 +102,7 @@ public class AgregarClientesFile extends JFrame{
 					ObjectOutputStream os=new ObjectOutputStream(fs);
 					os.writeObject(cliente);
 					os.close();
+					vaciarCampos();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -112,7 +113,12 @@ public class AgregarClientesFile extends JFrame{
 		btnBorrar.setBounds(215, 338, 89, 23);
 		getContentPane().add(btnBorrar);
 		btnBorrar.setVisible(false);
-		
+		btnBorrar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				vaciarCampos();
+			}
+		});
 		setVisible(true);
 	}
 	
@@ -143,5 +149,12 @@ public class AgregarClientesFile extends JFrame{
 		lblSaldo.setVisible(true);
 		btnAnyadir.setVisible(true);
 		btnBorrar.setVisible(true);
+	}
+	
+	private void vaciarCampos() {
+		tfDNI.setText("");
+		tfNombre.setText("");
+		tfDireccion.setText("");
+		tfSaldo.setText("");
 	}
 }
