@@ -1,6 +1,8 @@
 package ejerciciosFicherosObj;
 
-public class Clientes {
+import java.io.Serializable;
+
+public class Clientes implements Serializable{
 
 	private String nombre;
 	private String DNI;
@@ -8,12 +10,17 @@ public class Clientes {
 	private double saldo;
 	private String estadoCuenta;
 	
-	public Clientes(String DNI, String nombre, String direccion, double saldo, String estadoCuenta) {
+	public Clientes(String DNI, String nombre, String direccion, double saldo) {
 		this.DNI=DNI;
 		this.nombre=nombre;
 		this.direccion=direccion;
 		this.saldo=saldo;
-		this.estadoCuenta=estadoCuenta;
+		if(this.saldo<0)
+			estadoCuenta="Deudor";
+		if(this.saldo==0)
+			estadoCuenta="Al dia";
+		if(this.saldo>0)
+			estadoCuenta="Positivo";
 	}
 	
 	public void setDni(String dni) {
