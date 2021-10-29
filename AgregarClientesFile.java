@@ -4,12 +4,14 @@ import javax.swing.*;
 import java.awt.Font;
 import java.awt.event.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class AgregarClientesFile extends JFrame{
 	private JTextField tfDNI,tfNombre,tfDireccion, tfSaldo;
 	private JLabel lblDni,lblNombre,lblDireccion, lblSaldo;
 	private JButton btnAnyadir, btnBorrar;
 	private File f;
+	private JButton btnLeerClientes;
 	public AgregarClientesFile() {
 		iniciarComponentes();
 	}
@@ -119,6 +121,7 @@ public class AgregarClientesFile extends JFrame{
 				vaciarCampos();
 			}
 		});
+		
 		setVisible(true);
 	}
 	
