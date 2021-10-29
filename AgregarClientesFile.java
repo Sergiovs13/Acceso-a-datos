@@ -9,7 +9,7 @@ public class AgregarClientesFile extends JFrame{
 	private JTextField tfDNI,tfNombre,tfDireccion, tfSaldo;
 	private JLabel lblDni,lblNombre,lblDireccion, lblSaldo;
 	private JButton btnAnyadir, btnBorrar;
-
+	private File f;
 	public AgregarClientesFile() {
 		iniciarComponentes();
 	}
@@ -93,6 +93,20 @@ public class AgregarClientesFile extends JFrame{
 		btnAnyadir.setBounds(46, 338, 89, 23);
 		getContentPane().add(btnAnyadir);
 		btnAnyadir.setVisible(false);
+		btnAnyadir.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				Clientes cliente=new Clientes(tfDNI.getText()+"",tfNombre.getText()+"",tfDireccion.getText()+"",Double.parseDouble(tfSaldo.getText()));
+				try {
+					FileOutputStream fs=new FileOutputStream(f);
+					ObjectOutputStream os=new ObjectOutputStream(fs);
+					os.writeObject(cliente);
+					os.close();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.setBounds(215, 338, 89, 23);
@@ -103,7 +117,7 @@ public class AgregarClientesFile extends JFrame{
 	}
 	
 	private void abrirExploradorFicheros() throws IOException {
-		File f=null;
+		
 		JFileChooser fc=new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		int opcion=fc.showOpenDialog(this);
