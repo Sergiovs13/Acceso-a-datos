@@ -11,7 +11,7 @@ public class AgregarClientesFile extends JFrame{
 	private JLabel lblDni,lblNombre,lblDireccion, lblSaldo;
 	private JButton btnAnyadir, btnBorrar;
 	private File f;
-	private JButton btnLeerClientes;
+	private ArrayList<Clientes>clientes=new ArrayList<>();
 	public AgregarClientesFile() {
 		iniciarComponentes();
 	}
@@ -98,16 +98,17 @@ public class AgregarClientesFile extends JFrame{
 		btnAnyadir.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				Clientes cliente=new Clientes(tfDNI.getText()+"",tfNombre.getText()+"",tfDireccion.getText()+"",Double.parseDouble(tfSaldo.getText()));
 				try {
-					FileOutputStream fs=new FileOutputStream(f);
-					ObjectOutputStream os=new ObjectOutputStream(fs);
-					os.writeObject(cliente);
+					ObjectOutputStream os=new ObjectOutputStream(new FileOutputStream(f));
+					clientes.add(new Clientes(tfDNI.getText()+"",tfNombre.getText()+"",tfDireccion.getText()+"",Double.parseDouble(tfSaldo.getText())));
+					os.writeObject(clientes);
+					os.flush();
 					os.close();
-					vaciarCampos();
+					
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
+				vaciarCampos();
 			}
 		});
 		

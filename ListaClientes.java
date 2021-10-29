@@ -55,7 +55,7 @@ public class ListaClientes extends JFrame{
 	}
 	
 	private void abrirExplorador() throws IOException, ClassNotFoundException {
-		ArrayList<Clientes>clientes=new ArrayList<>();
+		ArrayList<Clientes>clientes;//=new ArrayList<>();
 		JFileChooser fc=new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		int opcion=fc.showOpenDialog(this);
@@ -64,10 +64,9 @@ public class ListaClientes extends JFrame{
 			f=new File(fc.getSelectedFile()+"");
 			FileInputStream fs=new FileInputStream(f);
 			ObjectInputStream os=new ObjectInputStream(fs);
-			clientes.add((Clientes)os.readObject());
-			
-			for(int i=0;i<clientes.size();i++) {
-				insertarCliente(clientes.get(i));
+			clientes=(ArrayList<Clientes>) os.readObject();
+			for(Clientes c:clientes) {
+				insertarCliente(c);
 			}
 		}
 	}
